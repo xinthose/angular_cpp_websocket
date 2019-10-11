@@ -1,0 +1,33 @@
+<main>
+    <div class="container text-center">
+            <div class="row justify-content-center">
+                    <div class="col">
+                <kendo-dropdownlist [data]="dataBooksGrouped" [value]="selectedBook" [defaultItem]="defaultItemBook"
+                    [textField]="'bookName'" [valueField]="'bookId'" (valueChange)="handleBookChange($event)">
+                </kendo-dropdownlist>
+                <kendo-dropdownlist [disabled]="isDisabledChapters" [defaultItem]="defaultItemChapter"
+                    [data]="dataResultChapters" [value]="selectedChapter" [textField]="'chapterName'"
+                    [valueField]="'chapterId'" (valueChange)="handleChapterChange($event)">
+                </kendo-dropdownlist>
+                <kendo-dropdownlist [disabled]="isDisabledVerses" [defaultItem]="defaultItemVerse"
+                    [data]="dataResultVerses" [value]="selectedVerse" [textField]="'verseName'" [valueField]="'verseId'"
+                    (valueChange)="handleVerseChange($event)">
+                </kendo-dropdownlist>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-3" *ngIf="showVerse">
+            <div class="col">
+                <mdb-card>
+                    <mdb-card-body>
+                        <mdb-card-title>
+                            <h4>{{verseTitle}}</h4>
+                        </mdb-card-title>
+                        <mdb-card-text>
+                            {{verseLocation}} "{{verseText}}"
+                        </mdb-card-text>
+                    </mdb-card-body>
+                </mdb-card>
+            </div>
+        </div>
+    </div>
+</main>
