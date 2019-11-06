@@ -68,3 +68,6 @@ typings/
 Thumbs.db
 keys.txt
 Ftp admin@xinthose.com.xml
+
+# C++
+back_end/obj/*.o
