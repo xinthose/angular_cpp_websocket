@@ -40,8 +40,6 @@ endif
 LIBS = -lboost_system -lboost_thread -lboost_timer
 # Boost Logging
 LIBS += -DBOOST_LOG_DYN_LINK -lboost_log_setup -lboost_log -lpthread
-# socket.io-client-cpp
-LIBS += -lsioclient
 
 #################### define the C source files ####################
 SRCS = $(wildcard src/*.cpp)

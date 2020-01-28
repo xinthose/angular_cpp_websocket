@@ -1,6 +1,14 @@
 # ATD	3-3-16
+
+#################### Architecture ####################
+arch := $(shell gcc -dumpmachine)
+ifeq ($(arch),x86_64-linux-gnu)
+	32_BIT_CPU = 0
+else
+	32_BIT_CPU = 1
+endif
+
 #################### Configuration ####################
-32_BIT_CPU = 0
 
 # .c: gcc; .cpp/.cc: g++
 CC = ccache g++
@@ -15,7 +23,7 @@ CC = ccache g++
 # -MMD = creates dependency files (.d) from user header files
 # -MT = target of dependency rule
 # -MF = file to write dependencies to
-CFLAGS = -Wall -std=c++11 -Wno-write-strings -O3
+CFLAGS = -Wall -std=c++14 -Wno-write-strings -O3
 CFLAGS += -DBOOST_LOG_DYN_LINK
 ifeq ($(32_BIT_CPU),1)
 	CFLAGS += -m32
@@ -40,8 +48,8 @@ endif
 LIBS = -lboost_system -lboost_thread -lboost_timer
 # Boost Logging
 LIBS += -DBOOST_LOG_DYN_LINK -lboost_log_setup -lboost_log -lpthread
-# socket.io-client-cpp
-LIBS += -lsioclient
+# OpenSSL
+LIBS += -lssl -lcrypto
 
 #################### define the C source files ####################
 SRCS = $(wildcard src/*.cpp)
@@ -69,6 +77,6 @@ obj/%.o: src/%.cpp
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	
 clean:
-	$(RM) obj/*.o obj/*.d *~ $(EXE) src/*.o restwebservice/*.pyc include/*.hpp.gch
+	$(RM) obj/*.o *~ $(EXE)
 	
 # this last blank line is needed for make to run

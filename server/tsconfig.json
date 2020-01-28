@@ -1,0 +1,11 @@
+{
+  "compileOnSave": false,
+  "files": [
+    "src/portalogic-server.ts",
+    "src/index.ts"
+  ],
+  "compilerOptions": {
+    "lib": ["es5", "dom"],
+    "target": "es5",
+  }
+}
